@@ -14,6 +14,8 @@ public class DomainController {
 	public String helloWorld()
 	{
 		return "My Hello World!";
+		
+
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/test")

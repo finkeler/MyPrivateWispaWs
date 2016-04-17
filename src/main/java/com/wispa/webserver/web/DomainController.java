@@ -22,6 +22,7 @@ public class DomainController {
 	@ResponseBody
 	public String helloWorld2()
 	{
-		return "My Hello World 2";
+		return "My Hello World 3";
 	}
+	
 }

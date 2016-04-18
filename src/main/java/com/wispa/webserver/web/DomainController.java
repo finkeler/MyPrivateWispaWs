@@ -57,4 +57,10 @@ public class DomainController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
     
+<<<<<<< HEAD
+=======
+
+	
+	
+>>>>>>> branch 'master' of https://github.com/finkeler/MyPrivateWispaWs.git
 }

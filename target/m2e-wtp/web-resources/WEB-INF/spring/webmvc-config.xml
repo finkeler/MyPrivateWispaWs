@@ -11,9 +11,19 @@
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan base-package="com.wispa.webserver" use-default-filters="false">
-	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	</context:component-scan>
-
+    
+    <context:component-scan base-package="com.wispa.webserver"/>
+    
+   
+   <!--
+    <context:component-scan base-package="com.wispa.webserver.web"
+        use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation" />       
+    </context:component-scan>
+    -->
+    
+    <context:annotation-config />
+    <mvc:annotation-driven /> 
+    
 </beans>
              

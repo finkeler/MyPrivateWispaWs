@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ import com.wispa.webserver.service.DomainService;
 
 
 @RestController
+@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
 public class DomainController {
 
 	@Autowired
@@ -56,11 +58,21 @@ public class DomainController {
     	domainService.deleteUserById(userId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-    
-<<<<<<< HEAD
-=======
+       
+    @RequestMapping(method = RequestMethod.PUT, value = "/users/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Void> updateUser(@PathVariable Integer userId, @RequestBody Map<String, String> body) {
+    	
+    	String userName = "default";
+        if (body.containsKey("name")) {
+            userName = body.get("name");
+        }
+       
+    	User user = domainService.findById(userId);
+    	user.setName(userName);
+    	
+    	domainService.updateUser(user);
 
-	
-	
->>>>>>> branch 'master' of https://github.com/finkeler/MyPrivateWispaWs.git
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
+    
 }

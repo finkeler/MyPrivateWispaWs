@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-appengine-skeleton
-=============================
+This is a Demo for Wispa Web Service
 
-This is a generated application from the appengine-skeleton archetype.
-=======
+API doc can be found: docs.wispademowsapi.apiary.io
+Web Server deployed over GAP at: https://wispa-ws-demo.appspot.com

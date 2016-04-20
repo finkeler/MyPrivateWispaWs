@@ -62,7 +62,7 @@ public class DomainController {
         return new ResponseEntity<Resources<Resource<User>>>(resource, HttpStatus.OK);
 	}
     
-    @RequestMapping(method = RequestMethod.GET, value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(method = RequestMethod.GET, value = "/{userId}")
     public ResponseEntity<Resource<User>> getUser(@PathVariable Long userId) throws UserNotExistException {
 
 		User user = domainService.findById(userId);
@@ -78,7 +78,7 @@ public class DomainController {
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
        
-    @RequestMapping(method = RequestMethod.PUT, value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, value = "/{userId}")
     ResponseEntity<Void> updateUser(@PathVariable Integer userId, @RequestBody Map<String, String> body) throws UserNotExistException, MissingKeyException {
     	
     	final String NAME_KEY = "name";

@@ -34,6 +34,8 @@ final class DomainResourceAssmebler implements ResourceAssembler<DomainService, 
         }
 
         Resources<Resource<User>> resource = new Resources<>(users);
+        resource.add(linkTo(DomainController.class).withSelfRel());
+
 
         return resource;
     }

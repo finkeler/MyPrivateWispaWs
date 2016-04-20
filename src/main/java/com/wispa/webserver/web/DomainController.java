@@ -56,7 +56,9 @@ public class DomainController {
 	public ResponseEntity<Resources<Resource<User>>> listAllUsers() {
 
 		Resources<Resource<User>> resource = domainResourceAssembler.toResource(domainService);
-
+		
+		if(resource.getContent().isEmpty())
+			return new ResponseEntity<Resources<Resource<User>>>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<Resources<Resource<User>>>(resource, HttpStatus.OK);
 	}
     

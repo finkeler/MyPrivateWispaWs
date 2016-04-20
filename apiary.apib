@@ -1,0 +1,108 @@
+FORMAT: 1A
+HOST: https://wispa-ws-demo.appspot.com/
+
+# Wispa Demo WS API
+
+API for managing users and users information
+
+## Users Collection [/users]
+
+### List All Users [GET]
+
+List all users in the repository
+
++ Response 200 (application/json)
+
+
+        {
+          "content": [
+            {
+              "id": 1,
+              "name": John,
+              "age": 0,
+              "salary": 0,
+              "links": [
+                {
+                  "rel": "self",
+                  "href": "http://wispa-ws-demo.appspot.com/users/1"
+                }
+              ]
+            },
+            {
+              "id": 0,
+              "name": Mary,
+              "age": 0,
+              "salary": 0,
+              "links": [
+                {
+                  "rel": "self",
+                  "href": "http://wispa-ws-demo.appspot.com/users/0"
+                }
+              ]
+            }
+          ]
+        }
+
+
+### Create a New User [POST]
+
+Creates a new user.
+This new user gets new and unique id and has no attributes.
+Location of the user returned in the response header
+
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /users/1
+
+
+
+## User [/users/{user_id}]
+
++ Parameters
+    + user_id (long) - ID of the User
+
+### Show user [GET]
+
+Show specific user properties
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+              "id": 1,
+              "name": John,
+              "age": 0,
+              "salary": 0,
+              "links": [
+                {
+                  "rel": "self",
+                  "href": "http://localhost:8888/users/1"
+                }
+              ]
+            }
+            
+### Update user [PUT]
+
+Update user properties
+
++ Request (application/json)
+
+        {
+          "name": Donald,
+          "age": 65,
+          "salary": 250000,
+
+        }
+        
++ Response 200 (application/json) 
+
+
+### Delete user [DELETE]
+
+Delete a user from repository
+
++ Response 200 (application/json)

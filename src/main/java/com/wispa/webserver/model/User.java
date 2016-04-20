@@ -1,7 +1,5 @@
 package com.wispa.webserver.model;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 public class User {
 	
 	private long id;

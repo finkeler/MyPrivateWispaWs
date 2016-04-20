@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
 
 import com.wispa.webserver.model.User;
+import com.wispa.webserver.model.UserNotExistException;
 
 //@Transactional
 @Service("domainService")
@@ -37,20 +38,27 @@ public class DomainServiceImpl implements DomainService{
 		return users;
 	}
 	
-	public User findById(long id) {
-		
-		return users.get(id);
+	public User findById(long id) throws UserNotExistException {		
+        synchronized (this.monitor) {
+            if (this.users.containsKey(id)) {
+        		return users.get(id);
+            }
+
+            throw new UserNotExistException(id);
+        }		
 	}
 	
-	public User findByName(String name) {
+	public User findByName(String name) throws UserNotExistException {
 		
-		for(User user : users.values()){
-			if(user.getName().equalsIgnoreCase(name)){
-				return user;
+		synchronized (this.monitor) {			
+			for(User user : users.values()){
+				if(user.getName().equalsIgnoreCase(name)){
+					return user;
+				}
 			}
+			
+			throw new UserNotExistException(name);
 		}
-		
-		return null;
 	}
 	
 	public void updateUser(User user) {
@@ -61,7 +69,7 @@ public class DomainServiceImpl implements DomainService{
 		users.remove(id);
 	}
 
-	public boolean isUserExist(User user) {
+	public boolean isUserExist(User user) throws UserNotExistException {
 		return findByName(user.getName())!=null;
 	}
 

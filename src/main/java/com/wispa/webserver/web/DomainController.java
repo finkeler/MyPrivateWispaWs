@@ -52,6 +52,14 @@ public class DomainController {
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
     
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ResponseEntity<Resources<Resource<User>>> listAllUsers() {
+
+		Resources<Resource<User>> resource = domainResourceAssembler.toResource(domainService);
+
+        return new ResponseEntity<Resources<Resource<User>>>(resource, HttpStatus.OK);
+	}
+    
     @RequestMapping(method = RequestMethod.GET, value = "/{userId}", produces = { MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Resource<User>> getUser(@PathVariable Long userId) throws UserNotExistException {
 
@@ -61,20 +69,7 @@ public class DomainController {
 		return new ResponseEntity<Resource<User>>(resource, HttpStatus.OK) ;
 
     }
-    
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<Resources<Resource<User>>> listAllUsers() {
-		//Map<Long, User> users = domainService.findAllUsers();
-
-		Resources<Resource<User>> resource = domainResourceAssembler.toResource(domainService);
-//		if(resource.hasLinks() == false){
-//			return new ResponseEntity<Resources<Resource<User>>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
-//		}		
-
-        return new ResponseEntity<Resources<Resource<User>>>(resource, HttpStatus.OK);
-	}
-	
-    
+      
     @RequestMapping(method = RequestMethod.DELETE, value = "/{userId}")
     ResponseEntity<Void> removeUser(@PathVariable Long userId) throws UserNotExistException {
     	domainService.deleteUserById(userId);

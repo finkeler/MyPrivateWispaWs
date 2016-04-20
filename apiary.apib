@@ -62,8 +62,14 @@ List all users in the repository
 
 + Response 200 (application/json)
 
-
+    
         {
+          "links": [
+            {
+              "rel": "self",
+              "href": "http://localhost:8888/users"
+            }
+          ],
           "content": [
             {
               "id": 1,
@@ -73,7 +79,7 @@ List all users in the repository
               "links": [
                 {
                   "rel": "self",
-                  "href": "http://wispa-ws-demo.appspot.com/users/1"
+                  "href": "http://localhost:8888/users/1"
                 }
               ]
             },
@@ -85,7 +91,7 @@ List all users in the repository
               "links": [
                 {
                   "rel": "self",
-                  "href": "http://wispa-ws-demo.appspot.com/users/0"
+                  "href": "http://localhost:8888/users/0"
                 }
               ]
             }
